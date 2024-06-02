@@ -145,10 +145,9 @@ class ViewController: UIViewController {
       exit(EXIT_FAILURE)
     }
     currentColors.reserveCapacity(columns)
-    for _ in 0..<columns {
-      currentColors.append(pegViews[currentRow][currentPosition].backgroundColor ?? .white)
+    for i in 0..<columns {
+      currentColors.append(pegViews[currentRow][i].backgroundColor ?? .white)
     }
-    game.printSecretColors()
     let result: [LogicEngine.GuesOption] = game.checkUserGuesses(userColors: currentColors)
     for i in 0..<columns {
       switch result[i] {
@@ -158,7 +157,7 @@ class ViewController: UIViewController {
       case .incorrectPosition:
         indicatorsViews[currentRow*columns+i].backgroundColor = .blue
         break
-      default:
+      case .incorrect:
         indicatorsViews[currentRow*columns+i].backgroundColor = .white
       }
     }

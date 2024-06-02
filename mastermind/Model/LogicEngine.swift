@@ -39,6 +39,7 @@ class LogicEngine {
     var incorrectPosition = 0
     var result: [GuesOption] = Array(repeating: .incorrect, count: len)
     for i in 0..<len {
+      // print("for index \(i) secret is \(secretColors[i].accessibilityName) and user color is \(userColors[i].accessibilityName)")
       if (secretColors.contains(userColors[i])) {
         if (userColors[i] == secretColors[i]) {
           result[i] = .correct
@@ -58,7 +59,7 @@ class LogicEngine {
   
   func printSecretColors() {
     for (index, color) in secretColors.enumerated() {
-      print("Secret Color \(index + 1): \(color)")
+      print("Secret Color \(index + 1): \(color.accessibilityName)")
     }
   }
 }
