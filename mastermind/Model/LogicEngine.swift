@@ -39,7 +39,7 @@ class LogicEngine {
     var incorrectPosition = 0
     var result: [GuesOption] = Array(repeating: .incorrect, count: len)
     for i in 0..<len {
-      // print("for index \(i) secret is \(secretColors[i].accessibilityName) and user color is \(userColors[i].accessibilityName)")
+      print("for index \(i) secret is \(secretColors[i].accessibilityName) and user color is \(userColors[i].accessibilityName)")
       if (secretColors.contains(userColors[i])) {
         if (userColors[i] == secretColors[i]) {
           result[i] = .correct
@@ -52,14 +52,17 @@ class LogicEngine {
         result[i] = .incorrect
       }
     }
-    print("You guessed \(correctGuesses) out of \(len) colors correctly.")
-    print("You guessed \(incorrectPosition) out of \(len) colors at correct position.")
-    return result
+    print("You guessed \(correctGuesses) colors correctly, \(incorrectPosition) colors at correct position.")
+    return result.shuffled()
   }
   
   func printSecretColors() {
     for (index, color) in secretColors.enumerated() {
       print("Secret Color \(index + 1): \(color.accessibilityName)")
     }
+  }
+  
+  func getSecretColors() -> [UIColor] {
+    return secretColors
   }
 }

@@ -58,10 +58,10 @@
 		A8E2B4EC2C0C623C00920A0A /* mastermind */ = {
 			isa = PBXGroup;
 			children = (
+				A8E2B5062C0D5D2D00920A0A /* View */,
 				A8E2B5032C0C800900920A0A /* Model */,
 				A8E2B4ED2C0C623C00920A0A /* AppDelegate.swift */,
 				A8E2B4EF2C0C623C00920A0A /* SceneDelegate.swift */,
-				A8E2B4F12C0C623C00920A0A /* ViewController.swift */,
 				A8E2B4F32C0C623C00920A0A /* Main.storyboard */,
 				A8E2B4F82C0C623C00920A0A /* LaunchScreen.storyboard */,
 				A8E2B4F62C0C623C00920A0A /* Assets.xcassets */,
@@ -76,6 +76,14 @@
 				A8E2B5012C0C800200920A0A /* LogicEngine.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A8E2B5062C0D5D2D00920A0A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8E2B4F12C0C623C00920A0A /* ViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
