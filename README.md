@@ -53,5 +53,5 @@ Contributions to the Mastermind game are welcome! Here's how you can contribute:
 
 ## License
 
-This project is licensed under the GNU GENERAL PUBLIC LICENSE V3 - see the LICENSE.md file for details.
+This project is licensed under the GNU GENERAL PUBLIC LICENSE V3 - see the LICENSE file for details.
 Feel free to modify the content to better fit your project specifics or personal preferences!
