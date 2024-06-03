@@ -8,6 +8,7 @@ class ViewController: UIViewController {
   let columns = 4
   let gameOutcomeLabelTextDefault: String = "Mastermind v1.0.0"
   
+  var shuffledColors: [UIColor] = []
   var selectedColor: UIColor?
   var pegViews: [[UIView]] = []
   var indicatorsViews: [UIView] = []
@@ -59,13 +60,14 @@ class ViewController: UIViewController {
     }
     createColorSelectionButtons()
     createGameOutcomeLabel()
+    startAnimation()
   }
   
   func createIndicators(_ posX: CGFloat, _ posY: CGFloat) {
     let spacing: CGFloat = 20.0
     let indicatorSize: CGFloat = 10.0
     let indicatorBorderWidth: CGFloat = 1.5
-    let indicatorColor = UIColor.red
+    let indicatorColor = indicatorColorDefault
     let offsetMain: CGFloat = 0.5
     let offsets: [[CGFloat]] = [[offsetMain, offsetMain],
                                 [offsetMain, -offsetMain],
@@ -140,10 +142,7 @@ class ViewController: UIViewController {
       
       if currentPosition >= rowPegs.count {
         currentPosition = 0
-        
-        if showUserResult() {
-          
-        } else {
+        if !showUserResult() {
           showAllButtons()
           currentRow += 1
         }
@@ -188,6 +187,7 @@ class ViewController: UIViewController {
   
   func showEndGameState(isUserWin: Bool) {
     hideAllButtons()
+    stopAnimation()
     revealSecretColorsWithAnimation()
     let winMsg: String = "Well done! You win in \(currentRow+1) guesses!"
     let loseMsg: String = "You Lose!"
@@ -215,15 +215,23 @@ class ViewController: UIViewController {
     showResetBt(posX: startX + CGFloat(columns) * (pegSize + spacing), posY: startY)
   }
   
-  func animateSecretPegs() {
+  func animateSecretPegs(index: Int = 0) {
     guard isAnimating else { return }
-    currentColorIndex = (currentColorIndex + 1) % colors.count
-    for peg in secretPegs {
-      UIView.animate(withDuration: 2.0, animations: {peg.backgroundColor = self.colors[self.currentColorIndex]}) { _ in
-        if self.isAnimating {
-          self.animateSecretPegs()
-        }
+    
+    if currentColorIndex >= colors.count || shuffledColors.isEmpty {
+      currentColorIndex = 0
+      shuffledColors = colors.shuffled()
+    }
+    
+    if index < secretPegs.count {
+      UIView.animate(withDuration: 0.5, animations: {
+        self.secretPegs[index].backgroundColor = self.shuffledColors[self.currentColorIndex]
+      }) { _ in
+        self.currentColorIndex += 1
+        self.animateSecretPegs(index: index + 1)
       }
+    } else {
+      animateSecretPegs(index: 0)
     }
   }
   
@@ -279,6 +287,7 @@ class ViewController: UIViewController {
     currentPosition = 0
     updateGameOutcomeLabel(with: gameOutcomeLabelTextDefault)
     showAllButtons()
+    startAnimation()
     game.updateSecretColors()
     game.printSecretColors()
   }
