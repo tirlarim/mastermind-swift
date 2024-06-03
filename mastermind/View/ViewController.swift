@@ -237,8 +237,10 @@ class ViewController: UIViewController {
   
   @objc
   func startAnimation() {
-    isAnimating = true
-    animateSecretPegs()
+    if !isAnimating {
+      isAnimating = true
+      animateSecretPegs()
+    }
   }
   
   @objc
