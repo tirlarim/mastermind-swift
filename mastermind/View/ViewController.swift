@@ -4,7 +4,7 @@ class ViewController: UIViewController {
   let colors: [UIColor] = [.red, .blue, .green, .yellow, .purple, .orange]
   let pegColorDefault: UIColor = .white
   let indicatorColorDefault: UIColor = .white
-  let rows = 2
+  let rows = 8
   let columns = 4
   let gameOutcomeLabelTextDefault: String = "Mastermind v1.0.0"
   
@@ -261,8 +261,8 @@ class ViewController: UIViewController {
   
   @objc
   func printClick() {
-    reset()
     print("Restart Game")
+    reset()
   }
   
   func reset() {
@@ -273,13 +273,14 @@ class ViewController: UIViewController {
       }
     }
     for indicatorsView in indicatorsViews {
-      indicatorsView.backgroundColor = .red
+      indicatorsView.backgroundColor = indicatorColorDefault
     }
     currentRow = 0
     currentPosition = 0
     updateGameOutcomeLabel(with: gameOutcomeLabelTextDefault)
     showAllButtons()
     game.updateSecretColors()
+    game.printSecretColors()
   }
   
   private func option2color(option: LogicEngine.GuesOption) -> UIColor {
