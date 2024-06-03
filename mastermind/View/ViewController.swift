@@ -40,7 +40,7 @@ class ViewController: UIViewController {
     createSecretPegs(startX: startX, startY: startY, with: columns, pegSize: pegSize, spacing: spacing)
     createPegs(pegSize: pegSize, spacing: spacing, startX: startX, startY: startY, margin: margin)
     createColorSelectionButtons()
-    createGameOutcomeLabel()
+    createGameTopLabel()
     startAnimation()
   }
   
@@ -117,12 +117,13 @@ class ViewController: UIViewController {
     fillNextPegWithSelectedColor()
   }
   
-  func createGameOutcomeLabel() {
+  func createGameTopLabel() {
     gameOutcomeLabel = UILabel()
     gameOutcomeLabel.frame = CGRect(x: 20, y: 100, width: view.frame.width - 40, height: 50)
     gameOutcomeLabel.textAlignment = .center
-    gameOutcomeLabel.font = UIFont.systemFont(ofSize: 24)
-    gameOutcomeLabel.textColor = UIColor.black
+    gameOutcomeLabel.font = UIFont(name: "Avenir-Heavy", size: 24)
+    gameOutcomeLabel.numberOfLines = 1
+    gameOutcomeLabel.textColor = .white
     gameOutcomeLabel.text = gameOutcomeLabelTextDefault
     self.view.addSubview(gameOutcomeLabel)
   }
