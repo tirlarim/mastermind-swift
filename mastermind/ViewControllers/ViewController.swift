@@ -4,7 +4,7 @@ class ViewController: UIViewController {
   let colors: [UIColor] = [.red, .blue, .green, .yellow, .purple, .orange]
   let pegColorDefault: UIColor = .white
   let indicatorColorDefault: UIColor = .white
-  let rows = 8
+  let rows = 2
   let columns = 4
   let gameOutcomeLabelTextDefault: String = "Mastermind v1.0.0"
   
@@ -42,6 +42,10 @@ class ViewController: UIViewController {
     createColorSelectionButtons()
     createGameTopLabel()
     startAnimation()
+    SoundManager.shared.setLoseSoundVolume(0.7)
+    SoundManager.shared.setVictorySoundVolume(0.7)
+    SoundManager.shared.setClickMusicVolume(1.0)
+    SoundManager.shared.setBackgroundMusicVolume(0.6)
   }
   
   func createPegs(pegSize: CGFloat, spacing: CGFloat, startX: CGFloat, startY: CGFloat, margin: CGFloat) {
@@ -195,9 +199,11 @@ class ViewController: UIViewController {
     let winMsg: String = "Well done! You win in \(currentRow+1) guesses!"
     let loseMsg: String = "You Lose!"
     if isUserWin {
+      SoundManager.shared.playVictorySound()
       updateGameOutcomeLabel(with: winMsg)
       print(winMsg)
     } else {
+      SoundManager.shared.playLoseSound()
       updateGameOutcomeLabel(with: loseMsg)
       print(loseMsg)
     }
@@ -275,6 +281,7 @@ class ViewController: UIViewController {
   @objc
   func printClick() {
     print("Restart Game")
+    SoundManager.shared.playClickSound()
     reset()
   }
   
