@@ -4,7 +4,7 @@ class ViewController: UIViewController {
   let colors: [UIColor] = [.red, .blue, .green, .yellow, .purple, .orange]
   let pegColorDefault: UIColor = .white
   let indicatorColorDefault: UIColor = .white
-  let rows = 2
+  let rows = 8
   let columns = 4
   let gameOutcomeLabelTextDefault: String = "Mastermind v1.0.0"
   
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     SoundManager.shared.setLoseSoundVolume(0.7)
     SoundManager.shared.setVictorySoundVolume(0.7)
     SoundManager.shared.setClickMusicVolume(1.0)
-    SoundManager.shared.setBackgroundMusicVolume(0.6)
+    SoundManager.shared.setBackgroundMusicVolume(0.3)
   }
   
   func createPegs(pegSize: CGFloat, spacing: CGFloat, startX: CGFloat, startY: CGFloat, margin: CGFloat) {
@@ -289,11 +289,19 @@ class ViewController: UIViewController {
     selectedColor = nil
     for currentRow in pegViews {
       for peg in currentRow {
-        peg.backgroundColor = pegColorDefault
+        if peg.backgroundColor != pegColorDefault {
+          UIView.transition(with: peg, duration: 0.5, options: .transitionFlipFromLeft, animations: {
+            peg.backgroundColor = self.pegColorDefault
+          }, completion: nil)
+        }
       }
     }
     for indicatorsView in indicatorsViews {
-      indicatorsView.backgroundColor = indicatorColorDefault
+      if indicatorsView.backgroundColor != indicatorColorDefault {
+        UIView.transition(with: indicatorsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+          indicatorsView.backgroundColor = self.indicatorColorDefault
+        }, completion: nil)
+      }
     }
     currentRow = 0
     currentPosition = 0
