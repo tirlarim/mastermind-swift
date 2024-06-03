@@ -23,11 +23,7 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    game = LogicEngine(availableColors: colors)
-    game.printSecretColors()
-    
     let pegSize: CGFloat = 40.0
-    let pegBorderWidth: CGFloat = 1.5
     let spacing: CGFloat = 20.0
     let margin: CGFloat = 60.0
     let boardWidth = CGFloat(columns) * (pegSize + spacing) - spacing + margin
@@ -39,8 +35,17 @@ class ViewController: UIViewController {
     let startX = ((gameBoard.frame.width - boardWidth - spacing) / 2) + margin/2.0
     let startY = ((gameBoard.frame.height - boardHeight) / 2) + margin/2.0
     
+    game = LogicEngine(availableColors: colors)
+    game.printSecretColors()
     createSecretPegs(startX: startX, startY: startY, with: columns, pegSize: pegSize, spacing: spacing)
-    
+    createPegs(pegSize: pegSize, spacing: spacing, startX: startX, startY: startY, margin: margin)
+    createColorSelectionButtons()
+    createGameOutcomeLabel()
+    startAnimation()
+  }
+  
+  func createPegs(pegSize: CGFloat, spacing: CGFloat, startX: CGFloat, startY: CGFloat, margin: CGFloat) {
+    let pegBorderWidth: CGFloat = 1.5
     for row in 0..<rows {
       var rowPegs: [UIView] = []
       for col in 0..<columns {
@@ -52,15 +57,12 @@ class ViewController: UIViewController {
         peg.layer.borderWidth = pegBorderWidth
         peg.layer.borderColor = UIColor.black.cgColor
         peg.layer.cornerRadius = pegSize / 2
-        gameBoard.addSubview(peg)
         rowPegs.append(peg)
+        self.view.addSubview(peg)
       }
       pegViews.append(rowPegs)
       createIndicators(startX + CGFloat(columns) * (pegSize + spacing)  + margin/4.0, startY + CGFloat(rows-row) * (pegSize + spacing)  + margin/4.0)
     }
-    createColorSelectionButtons()
-    createGameOutcomeLabel()
-    startAnimation()
   }
   
   func createIndicators(_ posX: CGFloat, _ posY: CGFloat) {
