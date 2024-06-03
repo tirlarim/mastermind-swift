@@ -45,9 +45,9 @@ Run the application in your preferred iOS simulator or on a physical device.
 Contributions to the Mastermind game are welcome! Here's how you can contribute:
 
 1. Fork the repository.
-2. Create a new branch (git checkout -b feature/your_new_feature).
-3. Commit your changes (git commit -am 'Add some feature').
-4. Push to the branch (git push origin feature/your_new_feature).
+2. Create a new branch (`git checkout -b feature/your_new_feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your_new_feature`).
 5. Create a new Pull Request.
 
 ## License
