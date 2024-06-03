@@ -38,7 +38,8 @@ cd Mastermind-iOS
 open Mastermind.xcodeproj
 ```
 
-Run the application in your preferred iOS simulator or on a physical device.
+3) Build game by press **cmd+R** in Xcode.
+5) Run it in your preferred iOS simulator or on a physical device.
 
 ## Contributing
 
