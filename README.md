@@ -19,7 +19,6 @@ The objective is to guess the right color sequence in as few guesses as possible
 
 ## Features
 
-- Intuitive drag-and-drop interface for choosing colors.
 - Colorful graphics and responsive design.
 - Feedback provided instantly after each guess.
 
